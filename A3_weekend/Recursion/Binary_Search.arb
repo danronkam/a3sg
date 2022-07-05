@@ -1,0 +1,96 @@
+class Array
+    # Write a monkey patch of binary search:
+    # E.g. [1, 2, 3, 4, 5, 7].my_bsearch(5) => 4
+    # **Do NOT use the built in `Array#index` `Array#find_index`, `Array#include?`,
+    # or `Array#member` methods in your implementation.**
+
+    def binary_search(target)
+        return nil if self.empty? #nil if not found, cannot search an empty arr
+        mid = self.length/2
+
+        case target <=> self[mid]
+        when -1 # when target < ele @ self[mid]
+          #search left
+            self[0...mid].binary_search(target)
+        when 0 #when target == ele @ self[mid]
+          #hit! return index
+            return mid 
+        when 1 #when target > ele @ self[mid]
+          #search right
+            right = self[mid+1..-1].binary_search(target)
+            return nil if right.nil?
+          mid + 1 + right
+        end
+    end
+
+end
+
+def bsearch(target)
+  return nil if self.empty?
+  mid = self.length / 2
+  
+  case target <=> self[mid]
+
+class Array
+
+  def bsearch(target)
+    return nil if self.empty?
+    mid = self.length/2
+
+    case target <=> self[mid]
+    when -1
+      self[0...mid].bsearch(target)
+    when 0
+      return mid
+    when 1
+      right = self[mid..-1].binary_search(target)
+      return nil if right.nil?
+
+      mid + 1 + right
+    end
+  end
+
+
+
+
+end
+
+
+def my_bsearch(target)
+  return nil if size == 0  #nil if not found, cannot search an empty arr
+  mid = size/2
+
+  case self[mid] <=> target
+  when 0
+    return mid
+  when 1
+    return self.take(mid).my_bsearch(target)
+  else
+    search_res = self.drop(mid+1).my_bsearch(target)
+    search_res.nil? ? nil : mid + 1 + search_res
+  end
+end
+end
+bsearch 
+# find the index of a target in a sorted array
+# only works on sorted arrrays
+# searching arrays by half until you find the target
+
+class Array
+    def my_bsearch(target)
+      return nil if size == 0
+      mid = size/2
+  
+      case self[mid] <=> target
+      when -1
+          right = self[mid+1..-1].my_bsearch(target)
+          return nil if right.nil? 
+          mid + 1 + right
+      when 0
+        return mid
+      when 1
+        return self[0...mid].my_bsearch(target)
+  
+      end
+    end
+  end

@@ -1,0 +1,42 @@
+class Hash
+    # Write a `Hash#my_merge(other_hash)` method. This should NOT modify the 
+    # original hash and return a combined version of both hashes.
+    # **Do NOT use the built-in `Hash#merge` method in your implementation.**
+    
+    def my_merge(other_hash)
+        merged = {}
+
+        other_hash.each_key do |key|
+            if !merged.has_key?(key)
+                merged[key] = other_hash[key]
+            else
+                merged[key] += other_hash[key]
+            end
+        end
+
+        self.each_key do |key|
+            if !merged.has_key?(key)
+                merged[key] = self[key]
+            else
+                merged[key] += self[key]
+            end
+        end
+    end
+  end
+  
+  class Hash
+    # Write a `Hash#my_merge(other_hash)` method. This should NOT modify the 
+    # original hash and return a combined version of both hashes.
+    # **Do NOT use the built-in `Hash#merge` method in your implementation.**
+    
+    def my_merge(other_hash)
+      duped_hash = self.dup
+  
+      other_hash.each do |k, v|
+        duped_hash[k] = v
+      end
+  
+      duped_hash
+    end
+  end
+  

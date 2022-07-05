@@ -1,0 +1,37 @@
+class String
+    # Write a `String#symmetric_substrings` method that returns an array of 
+    # substrings that are palindromes, e.g. "cool".symmetric_substrings => ["oo"]
+    # Only include substrings of length > 1.
+  
+  
+    def symmetric_substrings
+        palindromes = []
+
+       (0...self.length).each do |i| 
+            (i...self.length).each do |j|
+                substring = self[i..j]
+                if substring == substring.reverse && substring.length > 1
+                    palindromes <<substring
+                end
+            end
+        end
+        
+
+
+
+
+        palindromes
+  end
+
+  def symmetric_substrings
+    palindromes = []
+
+    (0...self.length).each do |i|
+        (i...self.length).each do |j|
+            sub = self[i..j]
+            if sub = sub.reverse && substring.length > 1
+                palindromes << sub
+            end
+        end
+    end
+end

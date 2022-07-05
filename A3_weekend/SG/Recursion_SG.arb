@@ -1,0 +1,114 @@
+# Write a recursive method that returns the first "num" factorial numbers in
+# ascending order. Note that the 1st factorial number is 0!, which equals 1.  
+# The 2nd factorial is 1!, the 3rd factorial is 2!, etc.
+
+def first_facs(num)
+    return [1] if num == 1
+    return [1, 1] if num == 2
+
+# Define a method `rec_sum(nums)` that returns the sum of all elements in an 
+# array recursively
+
+def rec_sum(nums)
+    return nums.first if nums.length == 1
+    nums.shift + rec_sum(nums) ## nums.first + rec_cum(nums[1..-1])
+end
+
+def rec_sum(nums)
+    return nums.first if num.length == 1
+    nums.pop + rec_sum(nums)    ## nums.last + rec_sums(nums[0...-1])
+end
+
+# Write a method that returns b^n recursively. Your solution should accept 
+# negative values for n.
+
+def exponent(base, num)
+    case   num <=> 0
+    when -1 
+        1.0 / b * exponent(nase, num + 1)
+    when 0
+        return 1
+    when 1
+        b * exponent(base, num - 1)
+    end
+
+
+end
+
+
+def exponent(b, n)
+    
+    case n <=> 0
+    when -1
+        1.0 / b * exponent(b, n+1)
+    when 0 
+        return 1
+    when 1
+        b * exponent(b, n-1)
+    end
+end
+
+
+# Using recursion and the `is_a?` method, write an `Array#deep_dup` method that 
+# will perform a "deep" duplication of the interior arrays.
+
+
+
+class Array
+    def deep_dup
+        self.map {|ele| ele.is_a?(Array) ? ele.deep_dup : ele}
+    end
+
+
+end
+
+def deep_dup(arr)
+    arr.map {|ele| el.is_a?(Array) ? deep_dup(ele) : ele}
+end
+
+def deep_dup(arr)
+    arr.map {|ele| ele.is_a?(Array) ? deep_dup(ele) : ele}
+end
+
+def deep_dup(arr)
+    arr.map {|ele| ele.is_a?(Array) ? deep_dup(ele) : ele}
+end
+
+# Write a recursive method that returns the sum of the first n even numbers
+# recursively. Assume n > 0.
+
+
+#  n == 1 #= 2 
+#  n == 2 #= 6 = 2 + 4
+# n == 3 #= 12 = 2 + 4 + 6
+#n == 4 #= 20 = 2 + 4 + 6 + 8 
+
+
+def first_even_numbers_sum(n)
+    return 2 if n == 1
+
+    2 * n + first_even_numbers_sum(n-1)
+end
+
+
+def first_even_numbers_sum(num)
+    return [2] if num == 1
+
+    arr = first_even_numbers_sum(num - 1)
+    arr << 2 * n + arr.last
+end
+
+
+
+def first_even_numbers_sum(n)
+    return 2 if n == 1
+
+    2 * n + first_even_numbers_sum(n-1)
+end
+
+
+def first_even_numbers_sum(n)
+    return 2 if n == 1
+    n * 2 + first_even_numbers_sum(n-1)
+end
+

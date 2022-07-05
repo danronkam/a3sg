@@ -1,0 +1,68 @@
+class Array
+    # Write an `Array#merge_sort` method; it should not modify the original array.
+    # **Do NOT use `Array#sort` or `Array#sort_by` in your implementation.**
+  
+    def merge_sort(&prc)
+        prc ||= Proc.new { |x, y| x <=> y }
+
+        return self if self.length <= 1
+
+        mid = self.length/2
+
+        sorted_left = self.take(mid).merge_sort(&prc)
+        sorted_right = self.drop(mid).merge_sort(&prc)
+
+        Array.merge(sorted_left, sorted_right, &prc)
+    end
+  
+    private
+    def self.merge(left, right, &prc)
+        merged = []
+        until  left.empty? || right.empty?
+            case prc.call(left.first, right.first)
+            when -1
+                merged << left.shift
+            when 0
+                merged << left.shift
+            when 1
+                merged << right.shift
+            end
+        end
+        merged + left +right
+    end
+end
+  
+
+#general merge sort
+
+class Array
+
+    def merge_sort
+        return self if count < 2
+        mid = count / 2
+
+        left = self.take(mid)
+        right = self.drop(mid)
+
+        sorted_left = left.merge_sort
+        sorted_right = right.merge_sort
+
+        merge(sorted_left, sorted_right)
+
+    end
+
+
+    def merge(left,right)
+        merged = []
+
+        until left.empty? || right.empty?
+            if left.first < right.first
+                merged << left.shift
+            else
+                merged << right.shift
+            end
+        end
+
+        merged + left + right
+    end
+end

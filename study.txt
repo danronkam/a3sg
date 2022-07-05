@@ -1,0 +1,268 @@
+def bubble_sort(&prc)
+	sorted = false
+
+	until sorted
+		sorted = true
+
+		self.each_with_index do |ele, i|
+  			if i + 1 == self.length
+               			next
+            		end
+
+			j=i+1
+			if self[i] > self[j]
+				sorted = false
+				self[i], self[j] = self[j], self[i]
+			end
+		end
+	end
+	self
+end
+
+def bubble_sort(&prc)
+	prc ||= Proc.new {|x,y| x<=>y}
+	sorted = false
+
+	until sorted
+		sorted = true
+
+		self.each_with_index do |ele, i|
+			j = i + 1
+			if prc.call(self[i], self[j]) == 1
+				self[i], self[j] = self[j], self[i]
+				sorted = false
+			end
+		end
+	end
+	self
+end
+
+def jumble_sort(str, alpha = nil)
+	if alpha == nil
+		alpha = ('a'..'z').to_a
+	end
+
+	sorted = false
+	until sorted
+		sorted = true
+
+		str.each_char.with_index do |letter, i|
+			j = i + 1
+			
+			if alpha.index(self[i]) > alpha.index(self[j])
+				sorted = false
+				self[i], self[j] = self[j], self[i]
+			end
+		end
+	end
+	str
+end
+
+def quick_sort(&prc)
+class Array
+	def my_quick_sort(&prc)
+		prc ||= Proc.new {|x, y| x<=> y}
+
+		pivot = self.first
+		left = self[1..-1].select{|ele| prc.call(ele, pivot) == -1	
+		right = self[1..-1].s;ect{|ele| prc.call(ele, pivot) != -1}
+		left.quic_sort(&prc) + [pivot] + right.quick_sort(&prc)
+	end
+end
+
+Class String
+	def real_words_in_string(dict)
+		real_words = []
+		
+		(0...self.length).each do |i|
+			(i...self.length).each do |j|
+			
+			sub = self[i..j]
+			if real_words.include?(sub)
+				next
+			end
+
+			if dict.include?(sub)
+				real_words << sub
+			end
+		end
+
+		real_words
+	end
+end	
+
+def caesar_cipher(str, shift)
+	alpha = ('a'..'z').to_a
+	letters= str.split('')
+	new_word = ''
+
+	letters.each do |char|
+	new_idx = (alpha.index_of(char) + shift) % alpha.length	
+	if char == ' '
+		new_word += char
+	else
+		new_word += alpha[new_idx]
+	end
+
+	new_word
+end	
+
+class Array
+	def binary_search(target)
+		return nil iof self.empty?
+
+		mid = self.length/2
+
+		case target <=> self[mid]
+		when -1
+			return self[0...mid].binary_search(target)
+		when 0
+			return mid
+		when 1 
+			right = self[mid+1..-1].binary_search(target)
+			return nil if right.nil?
+			mid+ 1+ right
+		end
+	en
+end
+
+def deep_dup(arr)
+	arr.map{|ele| ele.is_a?(Array) ? deep_dup(ele) : ele}
+end
+
+def first_even_numbers_sum(n)
+	return 2 if n == 1
+
+	2n + first_even_numbers_sum(n-1)
+end
+
+def exponent(b, n)
+	case n <=> 0
+	when -1
+		1/(b * exponent(b, n+1)
+	when 0
+		return 1
+	when 1
+		b * exponent(b, n-1)
+	end
+end
+
+def fib_sum(n)
+	reutn 0 if n == 0
+	return 1 if n == 1
+
+	fib_sum(n-1) + fib_sum(n-2)
+end
+
+def factorials_rec(num)
+	return [1] if num == 1
+	return [1,1]
+
+	facs= factorials_rec(num-1)
+	facs << facs.last*(num-1)
+	facs
+end
+
+class Array
+	def merge_sort(&prc)
+		prc ||= Proc.new {|x, y| x <=> y}
+		mid =self.length / 2
+		
+		left_sorted = self[0...mid].merge_sort(&prc)
+		right_sorted = self[mid+1..-1].merge_sort(&prc)
+
+		Array.merge(left_sorted, right_sorted, &prc)
+	end
+
+	def sort(left, right, &prc)
+		merged = []
+
+		until left.empty? || right.empty?
+			case prc.call(left.first, right.first)
+			when -1
+				merged << left.shift
+			when 0 
+				merged << left.shift			
+			when 1
+				merged << right.shift
+			end
+		end
+		merged + left + right
+	end
+end
+
+
+def rec_sum(nums)
+	return  0 if nums.empty?
+
+	nums.first + rec_sum(nums[1..-1])
+end
+
+def string_include_key?(string,key)
+	return true if key.length == 0
+
+	key_char = key.chars.first
+	key_idx = string.index(key_char)
+
+	return false if key_idx.nil?
+	string.include_key(str[key_idx+1..-1], key[1..-1])
+end
+
+
+class Array
+	def my_inject(acc = nil, &prc)
+		if acc == nil
+			acc = self.shift
+		end
+	
+		self.each do |ele|
+			acc = prc.call(acc, ele)
+		end
+		acc
+	end
+
+	def my_zip(*arr)
+		zipped = []
+
+		self.length.times do |i|
+			subzip = [self[i]]
+
+			arr.each do |array|
+				subzip << array[i]
+			end
+
+			zipped << subzip
+		end
+		
+		zipped
+	end		
+
+	def my_flatten
+		flattened = []
+		self.each do |ele|
+			ele.is_a?(Array) ? flattened += ele.my_flatten : flattened << ele}	
+		end
+
+		flattened
+	end	
+
+	def my_rotate(pos= 1)
+		split_idx = pos & self.length
+
+		self.drop(split_idx) + self.take(split_idx)
+	end
+
+	def my_join(sep = '')
+		new_word = ''
+		i = 0
+		
+		self.each do |ele|
+			
+			ele_str = ele.to_s
+			new_word += ele_str
+			new_word += sep unless i == self.length-1
+			i += 0
+		end
+
+		new_word
+	end
